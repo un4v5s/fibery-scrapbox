@@ -1,0 +1,44 @@
+{
+  "id": "scrapbox-app",
+  "name": "Scrapbox Integration",
+  "version": "0.0.1",
+  "description": "Integrate data about public holidays into Fibery",
+  "authentication": [
+    {
+      "id": "public",
+      "name": "Public Access",
+      "description": "There is no any authentication required",
+      "fields": []
+    }
+  ],
+  "sources": [],
+  "responsibleFor": {
+    "dataSynchronization": true
+  }
+},
+
+{
+  id: 'integration-sample-datalist-app',
+  name: 'Integration Sample Datalist App',
+  version: `1.0.0`,
+  type: 'crunch',
+  description: 'Integration sample datalist app.',
+  authentication: [
+      {
+          description: 'Provide Token',
+          name: 'Token Authentication',
+          id: 'token',
+          fields: [
+              {
+                  type: 'text',
+                  description: 'Personal Token',
+                  id: 'token',
+              },
+          ],
+      },
+  ],
+  sources: [],
+  responsibleFor: {
+      dataSynchronization: true,
+  },
+}
