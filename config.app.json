@@ -1,44 +1,27 @@
 {
   "id": "scrapbox-app",
   "name": "Scrapbox Integration",
+  "website": "https://www.un4v5s.com/",
   "version": "0.0.1",
-  "description": "Integrate data about public holidays into Fibery",
+  "description": "Integrate Scrapbox data into Fibery",
   "authentication": [
     {
-      "id": "public",
-      "name": "Public Access",
-      "description": "There is no any authentication required",
-      "fields": []
+      "id": "sid",
+      "name": "sid",
+      "description": "Scrapbox needs sid to connect private project",
+      "fields": [
+        {
+            "id": "sid",
+            "title": "sid",
+            "description": "Your sid, duh!",
+            "type": "text",
+            "optional": true
+        }
+      ]
     }
   ],
   "sources": [],
   "responsibleFor": {
     "dataSynchronization": true
   }
-},
-
-{
-  id: 'integration-sample-datalist-app',
-  name: 'Integration Sample Datalist App',
-  version: `1.0.0`,
-  type: 'crunch',
-  description: 'Integration sample datalist app.',
-  authentication: [
-      {
-          description: 'Provide Token',
-          name: 'Token Authentication',
-          id: 'token',
-          fields: [
-              {
-                  type: 'text',
-                  description: 'Personal Token',
-                  id: 'token',
-              },
-          ],
-      },
-  ],
-  sources: [],
-  responsibleFor: {
-      dataSynchronization: true,
-  },
 }
