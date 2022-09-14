@@ -1,3 +1,10 @@
+password.txt
+app-with-test.js
+schema copy 2.json
+schema copy.json
+schema.json
+backup/*
+
 # Logs
 logs
 *.log

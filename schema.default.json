@@ -1,0 +1,62 @@
+{
+  "id": {
+    "type": "id",
+    "name": "Id"
+  },
+  "sb_id": {
+    "type": "text",
+    "name": "Scrapbox ID"
+  },
+  "name": {
+    "type": "text",
+    "name": "Name"
+  },
+  "descriptions": {
+    "type": "text",
+    "name": "Descriptions"
+  },
+  "created": {
+    "type": "date",
+    "name": "Created"
+  },
+  "updated": {
+    "type": "date",
+    "name": "Updated"
+  },
+  "linked": {
+    "type": "number",
+    "name": "Linked Count",
+    "subType": "integer"
+  },
+  "views": {
+    "type": "number",
+    "name": "Views",
+    "subType": "integer"
+  },
+  "links": {
+    "type": "array[text]",
+    "name": "Links",
+    "subType": "url"
+  },
+  "fullLinks": {
+    "type": "array[text]",
+    "name": "Full Links",
+    "subType": "url"
+  },
+  "url": {
+    "type": "text",
+    "name": "Original Url",
+    "subType": "url"
+  },
+  "relation": {
+    "name": "Related Page Ref",
+    "type": "text",
+    "relation": {
+      "cardinality": "many-to-many",
+      "name": "Page",
+      "targetName": "pages",
+      "targetType": "pages",
+      "targetFieldId": "id"
+    }
+  }
+}

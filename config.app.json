@@ -2,20 +2,24 @@
   "id": "scrapbox-app",
   "name": "Scrapbox Integration",
   "website": "https://www.un4v5s.com/",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Integrate Scrapbox data into Fibery",
   "authentication": [
     {
+      "name": "Settings for Scrapbox Integration",
       "id": "sid",
-      "name": "sid",
-      "description": "Scrapbox needs sid to connect private project",
       "fields": [
         {
-            "id": "sid",
-            "title": "sid",
-            "description": "Your sid, duh!",
-            "type": "text",
-            "optional": true
+          "type": "text",
+          "description": "Required for private Scrapbox project",
+          "id": "sid",
+          "name": "Scrapbox connect.sid"
+        },
+        {
+          "type": "link",
+          "id": "link",
+          "name": "How to get sid.",
+          "value": "https://scrapbox.io/nishio/Scrapbox%E3%81%AEprivate%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AEAPI%E3%82%92%E5%8F%A9%E3%81%8F"
         }
       ]
     }

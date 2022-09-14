@@ -3,25 +3,27 @@ const path = require(`path`);
 const logger = require(`morgan`);
 const wrap = require(`express-async-wrap`);
 const _ = require(`lodash`);
-const uuid = require(`uuid-by-string`);
-const got = require(`got`);
+const scrapbox = require(`./scrapbox.api`);
 
-const getYearRange = filter => {
-    let fromYear = parseInt(filter.from);
-    let toYear = parseInt(filter.to);
+const sendError = function (res, error) {
+  const err = error.response || error;
+  let code = err.status || err.statusCode || (_.isNumber(err.code) ? err.code : null) || 500;
+  code = code > 300 ? code : 500;
+  let message = err.message || err.error || `Something goes wrong...`;
+  if (!_.isEmpty(err.errors)) {
+      const first = _.first(err.errors);
+      message = first.message || `Something goes wrong...`;
+  }
+  res.status(code);
+  res.json({code, message});
+};
 
-    if (_.isNaN(fromYear)) {
-        fromYear = new Date().getFullYear() - 1;
-    }
-    if (_.isNaN(toYear)) {
-        toYear = new Date().getFullYear();
-    }
-    const yearRange = [];
-    while(fromYear <= toYear) {
-        yearRange.push(fromYear);
-        fromYear++;
-    }
-    return yearRange;
+const promiseToResponse = (res, promise) => {
+  promise
+    .then((r) => res.json(r))
+    .catch((err) => {
+      sendError(res, err);
+    });
 };
 
 const app = express();
@@ -32,45 +34,44 @@ app.use(express.urlencoded({extended: false}));
 app.get(`/logo`, (req, res) => res.sendFile(path.resolve(__dirname, `logo.svg`)));
 
 const appConfig = require(`./config.app.json`);
+
 app.get(`/`, (req, res) => res.json(appConfig));
 
-app.post(`/validate`, (req, res) => res.json({name: `Public`}));
+app.post(`/validate`, wrap(async (req, res) => {
+    const user = await scrapbox.validate(req.body.fields.sid);
+    if(user.name){
+      res.json({name: user.name})
+    }else{
+      res.json(user)
+    }
+}));
 
-const syncConfig = require(`./config.sync.json`);
-app.post(`/api/v1/synchronizer/config`, (req, res) => res.json(syncConfig));
-
-const schema = require(`./schema.json`);
-app.post(`/api/v1/synchronizer/schema`, (req, res) => res.json(schema));
+app.post(`/api/v1/synchronizer/config`, (req, res) => {
+  if (_.isEmpty(req.body.account)) {
+    throw new Error(`account should be provided`);
+  }
+  promiseToResponse(res, scrapbox.config(req.body));
+});
+  
+app.post(`/api/v1/synchronizer/schema`, (req, res) => {
+  return promiseToResponse(res, scrapbox.schema(req.body))
+});
 
 app.post(`/api/v1/synchronizer/datalist`, wrap(async (req, res) => {
-    const countries = await (got(`https://date.nager.at/api/v3/AvailableCountries`).json());
-    const items = countries.map((row) => ({title: row.name, value: row.countryCode}));
-    res.json({items});
+  const items = ['updated','created','accessed','linked','views','title','updatedbyMe'].map(e => {
+    return {"title": e, "value": e}
+  });
+  return res.json({items});
 }));
 
 app.post(`/api/v1/synchronizer/data`, wrap(async (req, res) => {
-    const {requestedType, filter} = req.body;
-    if (requestedType !== `holiday`) {
-        throw new Error(`Only holidays database can be synchronized`);
-    }
-    if (_.isEmpty(filter.countries)) {
-        throw new Error(`Countries filter should be specified`);
-    }
-    const {countries} = filter;
-    const yearRange = getYearRange(filter);
-    const items = [];
-    for (const country of countries) {
-        for (const year of yearRange) {
-            const url = `https://date.nager.at/api/v3/PublicHolidays/${year}/${country}`;
-            console.log(url);
-            (await (got(url).json())).forEach((item) => {
-                item.id = uuid(JSON.stringify(item));
-                items.push(item);
-            });
-        }
-    }
-    return res.json({items});
+  let result = await scrapbox.getPages(req.body);
+  return res.json(result);
 }));
+
+app.post('/api/v1/synchronizer/filter/validate', (req, res) => {
+  return res.json({"status": "ok"});
+});
 
 app.use(function (req, res, next) {
     const error = new Error(`Not found`);
