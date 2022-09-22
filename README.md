@@ -35,7 +35,9 @@ yarn install
 
 Like [DigitalOcean](https://www.digitalocean.com/), [Heroku](https://www.heroku.com/).
 
-### Fibery setting
+<br>
+
+## Fibery settings
 
 Go to your Fibery page and open database screen.
 
