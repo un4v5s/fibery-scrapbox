@@ -33,7 +33,7 @@ yarn install
 
 ### Deploy and host your project on any PaaS services
 
-Like [DigitalOcean](https://www.digitalocean.com/), [Heloku](https://www.heroku.com/).
+Like [DigitalOcean](https://www.digitalocean.com/), [Heroku](https://www.heroku.com/).
 
 ### Fibery setting
 
