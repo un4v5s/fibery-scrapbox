@@ -93,6 +93,18 @@ Filter setting example.
 
 <br>
 
+### Reports
+
+Show how much records created for each Scrapbox project over time
+
+![report](https://i.gyazo.com/6fa87f3926a8bb36af9ffe6053b2e38a.png)
+
+Show how much records updated for each Scrapbox project over time
+
+![report](https://i.gyazo.com/be1fc193333d7b6bd35c71ef87f137ba.png)
+
+<br>
+
 ## Contributing
 
 Pull requests are welcome.
