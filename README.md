@@ -2,14 +2,16 @@
 
 fibery-scrapbox is a custom integration for [Fibery](https://fibery.io).
 
-fibery-scrapbox get Scrapbox from 2 api endpoints.
+fibery-scrapbox get Scrapbox information of pages from two api endpoints.
 
 1. From `api/pages/:projectname` to get all summarized page information on your project.
-2. From `api/pages/:projectname/search/titles` to get all page links information of all pages.
+2. From `api/pages/:projectname/search/titles` to get page links information of all pages.
 
-To get all links of pages let you to handle specific links as like attributes or tags of pages.
+To get all links of pages let you to handle specific links as attributes or tags on Fibery.
 
-For example, if you set `#InProgress` link in your all pages you are working on Scrapbox, you can these pages as status on board view in Fibery.
+For example, if you set `#inprogress` link in your all pages you are working on Scrapbox, you can create a board view with status column in Fibery.
+
+fibery-scrapbox can enhance the possibilities of Scrapbox, especially in the area of visualization.
   
 <br>
 
