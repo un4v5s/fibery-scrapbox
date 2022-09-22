@@ -10,13 +10,15 @@ fibery-scrapbox get Scrapbox from 2 api endpoints.
 To get all links of pages let you to handle specific links as like attributes or tags of pages.
 
 For example, if you set `#InProgress` link in your all pages you are working on Scrapbox, you can these pages as status on board view in Fibery.
+  
+<br>
 
 ## Installation
 
 Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services.
 
 Get a free API Key at https://example.com
-
+  
 ### Clone the repo
 
 ```bash
@@ -59,15 +61,21 @@ Select Scrapbox projects to connect, click `Sync now`.
 
 Now you get Scrapbox pages on Fibery.
 
+<br>
+
 ## Usage
 
 With fibery-scrapbox, you can show Scrapbox pages with links as structured data (or attributes).
+
+<br>
 
 ### Calendar view
 
 Show Scrapbox pages as visualized view with created date.
 
 ![calendar view](https://i.gyazo.com/7d5f20ce5d748a7ea6d5495dd3fc8f60.png)
+
+<br>
 
 ### Board view with status
 
@@ -79,14 +87,19 @@ Filter setting example.
 
 ![filter setting example](https://i.gyazo.com/f6c9f516c3240c39f323ae74e1a11602.png)
 
+<br>
 
 ## Contributing
 
 Pull requests are welcome.
 
+<br>
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+<br>
 
 ## Links
 
