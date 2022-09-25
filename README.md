@@ -16,10 +16,6 @@ fibery-scrapbox can enhance the possibilities of Scrapbox, especially in the are
 <br>
 
 ## Installation
-
-Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services.
-
-Get a free API Key at https://example.com
   
 ### Clone the repo
 
